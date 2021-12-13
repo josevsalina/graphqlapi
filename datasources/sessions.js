@@ -16,6 +16,22 @@ class SessionAPI extends DataSource {
     const session = _.filter(sessions, { id: parseInt(id) });
     return session[0];
   }
+
+  toggleFavoriteSession(id) {
+    const session = _.filter(sessions, { id: parseInt(id) });
+    if (session.length > 0) session[0].favorite = !session[0].favorite;
+    return session[0];
+  }
+
+  addSession(session) {
+    sessions.push(session);
+    return {
+      id: Math.floor(Math.random() * 100000000),
+      favorite: false,
+      speakers: [],
+      ...session,
+    };
+  }
 }
 
 module.exports = SessionAPI;

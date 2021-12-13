@@ -33,8 +33,25 @@ module.exports = gql`
     room: String
     day: String
     format: String
+    track: String
+    level: String
+    favorite: Boolean
+    speakers: [Speaker]
+  }
+  input SessionInput {
+    title: String!
+    description: String
+    startsAt: String
+    endsAt: String
+    room: String
+    day: String
+    format: String
     track: String @deprecated(reason: "Here put the reason")
     level: String
-    speakers: [Speaker]
+    favorite: Boolean
+  }
+  type Mutation {
+    togglefavoriteSession(id: ID): Session
+    addNewSession(session: SessionInput): Session
   }
 `;
